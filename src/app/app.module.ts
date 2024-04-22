@@ -7,19 +7,25 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { HomeComponent } from './components/home/home.component';
 import { MedicineComponent } from './components/medicine/medicine.component';
-
+import {HttpClientModule} from  '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { TopDealsComponent } from './components/top-deals/top-deals.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    MedicineComponent
+    MedicineComponent,
+    TopDealsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule,
+    FormsModule
+  
   ],
   providers: [],
   bootstrap: [AppComponent]
