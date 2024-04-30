@@ -1,1 +1,45 @@
-<!-- <p>header works!</p> -->
+<div class="row m-auto shadow-sm text-light mb-2">
+    <div class="col-md-4 text-center p-2 fs-5 fw-bolder">
+        <a href="" class="text-decoration-none">MedLab</a>
+
+    </div>
+    <div class="col-md-6 text-end p-2 fs-6 fw-bold">
+
+      <a class="text-decoration-none mx-2 cursor"><i class="bi bi-cart fs-4 fw-bold "></i><span class="cart  px-1 rounded-circle">{{count}}</span></a>
+      
+      <ng-container *ngIf="hideLoginBtn" >
+        
+        <a class="text-decoration-none mx-2 cursor text-dark dropdown" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{userDetailsObj.name}}<i class="bi bi-caret-down"></i></a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item cursor">My Profile</a></li>
+          <li><a class="dropdown-item cursor">Another action</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item cursor" (click)="logOut()">LogOut</a></li>
+        </ul>
+      </ng-container>
+      
+      <a *ngIf="!hideLoginBtn" class="text-decoration-none mx-2 cursor" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+      <a class="text-decoration-none mx-2 cursor">About Us</a>
+    </div>
+
+</div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" #closeBtn data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <app-login *ngIf="action == 'Login'" (emitAction)="getData($event)"></app-login>
+          <app-signup *ngIf="action == 'SignUp'"></app-signup>
+        </div>
+          <div class="d-grid gap-2 px-4 mb-3">
+            <button class="btn btn-primary" *ngIf="action == 'Login'" type="button" (click)="triggerAction('SignUp')">SignUp</button>
+            <button class="btn btn-primary"  *ngIf="action == 'SignUp'" type="button"  (click)="triggerAction('Login')">Login</button>
+          </div>     
+      </div>
+    </div>
+  </div>

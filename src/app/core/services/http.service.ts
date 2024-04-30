@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -14,8 +14,13 @@ export class HttpService {
      'content-type':'application/json'
   })
 
-  getDataFromServer(endPoint:string){
+  getDataFromServer(endPoint:string,params:HttpParams = new HttpParams()){
     const url =this.baseurl + endPoint;
-   return this.http.get(url,{headers:this.headers})
+   return this.http.get(url,{headers:this.headers,params:params})
+  }
+
+  postDataToServer(endPoint:string,data:any){
+    const url =this.baseurl + endPoint;
+   return this.http.post(url,{headers:this.headers,data})
   }
 }
